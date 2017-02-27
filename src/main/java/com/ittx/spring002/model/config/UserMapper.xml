@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ittx.spring002.dao.UserDao">
+
+	<resultMap id="userResult" type="com.ittx.spring002.model.User">
+		<id property="id" column="id" jdbcType="INTEGER" />
+		<result property="name" column="name" jdbcType="VARCHAR" />
+		<result property="number" column="number" jdbcType="INTEGER" />
+	</resultMap>
+
+	<insert id="addUser" parameterType="com.ittx.spring002.model.User">
+		insert into spring_user (name,number)values(#{name},#{number})
+	</insert>
+
+	<select id="getUserLists" resultMap="userResult">
+		select * from spring_user
+	</select>
+	
+	<delete id="deleteUser" parameterType="com.ittx.spring002.model.User">
+		delete from spring_user where id=#{id}
+	</delete>
+	
+	<select id="getUserById" parameterType="int" resultMap="userResult">
+		select * from spring_user where id=#{id}
+	</select>
+	
+</mapper>
